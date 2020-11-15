@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        display: flex;
+        flex-direction: column;
+        width: 10em;
+      }
+
+      button,
+      input {
+        margin: 0.2em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <input id="input" />
+      <button id="3000">Same-origin request (localhost:3000)</button>
+      <button id="3001">Cross-origin request (localhost:3001)</button>
+      <button id="3001-cors">Cross-origin request with CORS (localhost:3001)</button>
+      <pre id="display" />
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
