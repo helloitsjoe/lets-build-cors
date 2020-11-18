@@ -33,6 +33,9 @@ const handleClick = (port, endpoint) => {
     });
 };
 
+// Goes to same domain as page
 button3000.onclick = () => handleClick('3000', '/api');
+// Goes to different domain without CORS handling (blocks all cross-domain request)
 button3001.onclick = () => handleClick('3001', '/api');
+// Goes to different domain with CORS handling (allows specific cross-domain requests)
 button3001cors.onclick = () => handleClick('3001', '/api_cors');
