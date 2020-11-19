@@ -1,7 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
-const { postHandler, noop, simpleCors } = require('./middleware');
+const { postHandler, proxyHandler, portMiddleware, noop, simpleCors } = require('./middleware');
 
 const corsOptions = { origin: 'http://localhost:3000' };
 
@@ -14,6 +14,8 @@ const makeApp = (port, apiOnly) => {
   app.use(apiOnly ? noop : express.static(__dirname));
   // Parse body in POST requests
   app.use(express.json());
+  // Add port to request
+  app.use(portMiddleware(port));
   // No CORS protection on OPTIONS (pre-POST) requests just to
   // make the POST requests more obvious what's happening
   app.options('*', cors());
@@ -24,6 +26,8 @@ const makeApp = (port, apiOnly) => {
   app.post('/api_cors', cors(corsOptions), postHandler);
   // Simple CORS without cors library (replace cors() with this to use it)
   // app.post('/api_cors', simpleCors, postHandler);
+  // Proxy to get around CORS
+  app.post('/api_proxy', proxyHandler);
 
   app.listen(port, () => {
     console.log(`listening on http://localhost:${port} ${apiOnly ? '(API only)' : ''}`);

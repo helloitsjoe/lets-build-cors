@@ -1,6 +1,7 @@
 const button3000 = document.getElementById('3000');
 const button3001 = document.getElementById('3001');
 const button3001cors = document.getElementById('3001-cors');
+const button3000Proxy = document.getElementById('3000-proxy');
 const input = document.getElementById('input');
 const display = document.getElementById('display');
 
@@ -39,3 +40,5 @@ button3000.onclick = () => handleClick('3000', '/api');
 button3001.onclick = () => handleClick('3001', '/api');
 // Goes to different domain with CORS handling (allows specific cross-domain requests)
 button3001cors.onclick = () => handleClick('3001', '/api_cors');
+// Goes to endpoint on same domain that proxies to other domain (CORS is browser-only)
+button3000Proxy.onclick = () => handleClick('3000', '/api_proxy');
