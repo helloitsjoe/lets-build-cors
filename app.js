@@ -1,5 +1,4 @@
 const express = require('express');
-const morgan = require('morgan');
 const cors = require('cors');
 const {
   postHandler,
@@ -36,7 +35,7 @@ const makeApp = (port, serveFrontend) => {
   // Simple CORS without cors library (replace cors() with this to use it)
   // app.post('/api_cors', simpleCors, postHandler);
   // Proxy to get around CORS
-  app.post('/api_proxy', proxyHandler);
+  app.post('/api_proxy', simpleCors(), proxyHandler);
 
   app.listen(port, () => {
     console.log(
