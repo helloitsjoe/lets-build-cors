@@ -21,7 +21,7 @@ const makeApp = (port, serveFrontend) => {
 
   if (serveFrontend) {
     // Serve index.html/js
-    app.use(express.static(__dirname));
+    app.use(express.static('public'));
   }
 
   // Parse body in POST requests
@@ -31,7 +31,7 @@ const makeApp = (port, serveFrontend) => {
   // make the POST requests more obvious what's happening
   app.options('*', cors());
 
-  // No CORS, this will only respond to requests from the same domain (port)
+  // No CORS, this will only respond to requests from the same origin (port)
   app.post('/api', postHandler(port));
 
   // This will respond to all cross-origin requests
@@ -66,7 +66,5 @@ const makeApp = (port, serveFrontend) => {
 
 makeApp(3000, true);
 makeApp(3001);
-// Visit localhost:3002 and make a request to 3001 with corsOptions.origin = true
-// Now change corsOptions.origin = 'http://localhost:3000' and make a request
-// from 3000, and then one from 3002. See the difference?
+// Visit localhost:3002 and make requests. Which endpoints allow the request?
 makeApp(3002, true);
