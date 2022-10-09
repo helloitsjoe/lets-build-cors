@@ -19,7 +19,7 @@
             throw new Error(`Error! Status: ${res.status}`);
           })
           .then((res) => {
-            response.innerText = JSON.stringify(res);
+            response.innerText = JSON.stringify(res, null, 2);
           })
           .catch((err) => {
             response.innerText = err.message;
