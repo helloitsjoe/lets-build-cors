@@ -15,5 +15,5 @@ jobs:
       - run: yarn
       - uses: helloitsjoe/deploy-github-pages@v1
         with:
-          target_dir: static
+          build_dir: static
 
