@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <title>CORS Example</title>
+  </head>
+  <body>
+    Click this button to make a request to http://localhost:3000:
+    <button id="button">Click me!</button>
+    <p id="response"></p>
+    <script>
+      const button = document.getElementById('button');
+      const response = document.getElementById('response');
+
+      button.onclick = () => {
+        fetch('http://localhost:3000/api', { method: 'POST', body: 'hi' })
+          .then((res) => {
+            if (res.ok) {
+              return res.json();
+            }
+            throw new Error(`Error! Status: ${res.status}`);
+          })
+          .then((res) => {
+            response.innerText = JSON.stringify(res);
+          })
+          .catch((err) => {
+            response.innerText = err.message;
+          });
+      };
+    </script>
+  </body>
+</html>
