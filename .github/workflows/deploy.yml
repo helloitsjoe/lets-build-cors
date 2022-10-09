@@ -18,5 +18,6 @@ jobs:
       - run: yarn test --silent
       - run: echo "${ENV_FILE}" > .env
       - uses: helloitsjoe/deploy-github-pages@v1
+        with:
           target_dir: static
 
