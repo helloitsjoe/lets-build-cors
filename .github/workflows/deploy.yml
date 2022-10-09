@@ -6,8 +6,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-20.04
-    env:
-      ENV_FILE: ${{ secrets.ENV_FILE }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -15,8 +13,6 @@ jobs:
           node-version: 14
           cache: yarn
       - run: yarn
-      - run: yarn test --silent
-      - run: echo "${ENV_FILE}" > .env
       - uses: helloitsjoe/deploy-github-pages@v1
         with:
           target_dir: static
