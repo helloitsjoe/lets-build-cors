@@ -1,6 +1,6 @@
 const express = require('express');
 
-const makeAppTwo = (port = 3000) => {
+const makeApi = (port = 3000) => {
   const app = express();
 
   app.use(express.json());
@@ -20,10 +20,10 @@ const makeAppTwo = (port = 3000) => {
   });
 
   app.listen(port, () => {
-    console.log(`Listening on http://localhost:${port}`);
+    console.log(`Serving API on http://localhost:${port}`);
   });
 };
 
 module.exports = {
-  makeAppTwo,
+  makeApi,
 };

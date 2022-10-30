@@ -1,5 +1,5 @@
 const { makeApp } = require('./app.js');
-const { makeAppTwo } = require('./app-two.js');
+const { makeApi } = require('./api.js');
 
 makeApp(3000);
-makeAppTwo(3001);
+makeApi(3001);
