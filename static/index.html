@@ -1,17 +1,31 @@
-<html>
+<!DOCTYPE html>
   <head>
     <title>CORS Example</title>
   </head>
   <body>
     <p>Make a request to http://localhost:3000/api:</p>
-    <button id="button">Click me!</button>
+    <form id="form">
+      <label>
+        Your message:
+        <input id="input" name="message"/>
+      </label>
+      <button id="button" type="submit">Submit</button>
+    </form>
     <pre id="response"></pre>
     <script>
-      const button = document.getElementById('button');
+      const form = document.getElementById('form');
       const response = document.getElementById('response');
 
-      button.onclick = () => {
-        fetch('http://localhost:3000/api', { method: 'POST', body: 'hi' })
+      form.onsubmit = (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const {message} = Object.fromEntries(formData);
+
+        fetch('http://localhost:3000/api', {
+          method: 'POST',
+          body: JSON.stringify({message}),
+          headers: { 'Content-Type': 'application/json' }
+        })
           .then((res) => {
             if (res.ok) {
               return res.json();
