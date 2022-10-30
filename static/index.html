@@ -24,10 +24,9 @@
     <title>CORS Example</title>
   </head>
   <body>
-    <p>Make a request to http://localhost:3001/api:</p>
     <form id="form">
       <label>
-        Your message:
+        <p id="label"></p>
         <input id="input" name="message"/>
       </label>
       <button id="button" type="submit">Submit</button>
@@ -36,6 +35,11 @@
     <script>
       const form = document.getElementById('form');
       const response = document.getElementById('response');
+      const label = document.getElementById('label');
+
+      const PORT = 3001
+
+      label.innerText = `Send a message to http://localhost:${PORT}/api:`
 
       form.onsubmit = (e) => {
         e.preventDefault();
