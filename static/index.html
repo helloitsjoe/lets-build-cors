@@ -24,7 +24,7 @@
     <title>CORS Example</title>
   </head>
   <body>
-    <p>Make a request to http://localhost:3000/api:</p>
+    <p>Make a request to http://localhost:3001/api:</p>
     <form id="form">
       <label>
         Your message:
@@ -42,7 +42,7 @@
         const formData = new FormData(e.target);
         const {message} = Object.fromEntries(formData);
 
-        fetch('http://localhost:3000/api', {
+        fetch('http://localhost:3001/api', {
           method: 'POST',
           body: JSON.stringify({message}),
           headers: { 'Content-Type': 'application/json' }
