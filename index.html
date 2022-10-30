@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+  <head>
+    <style>
+      * {
+        background-color: black;
+        color: white;
+        font-family: sans-serif;
+      }
+
+      button {
+        border: 1px solid white;
+        padding: 0.75em;
+        outline: none;
+      }
+
+      input {
+        border: 1px solid white;
+        outline: none;
+        margin: 0;
+        padding: 0.75em;
+      }
+    </style>
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <title>CORS Example</title>
+  </head>
+  <body>
+    <form id="form">
+      <label>
+        <p id="label"></p>
+        <input id="input" name="message"/>
+      </label>
+      <button id="button" type="submit">Submit</button>
+    </form>
+    <pre id="response"></pre>
+    <script>
+      const form = document.getElementById('form');
+      const response = document.getElementById('response');
+      const label = document.getElementById('label');
+
+      const PORT = 3001
+
+      label.innerText = `Send a message to http://localhost:${PORT}/api:`
+
+      form.onsubmit = (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const {message} = Object.fromEntries(formData);
+
+        fetch(`http://localhost:${PORT}/api`, {
+          method: 'POST',
+          body: JSON.stringify({message}),
+          headers: { 'Content-Type': 'application/json' }
+        })
+          .then((res) => {
+            if (res.ok) {
+              return res.json();
+            }
+            throw new Error(`Error! Status: ${res.status}`);
+          })
+          .then((res) => {
+            response.innerText = JSON.stringify(res, null, 2);
+          })
+          .catch((err) => {
+            response.innerText = err.message;
+          });
+      };
+    </script>
+  </body>
+</html>
