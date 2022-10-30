@@ -46,7 +46,7 @@
         const formData = new FormData(e.target);
         const {message} = Object.fromEntries(formData);
 
-        fetch('http://localhost:3001/api', {
+        fetch(`http://localhost:${PORT}/api`, {
           method: 'POST',
           body: JSON.stringify({message}),
           headers: { 'Content-Type': 'application/json' }
