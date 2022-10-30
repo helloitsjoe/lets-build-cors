@@ -1,22 +1,21 @@
 const express = require('express');
 
-const makeApi = (port = 3000) => {
+const makeApi = (port = 3001) => {
   const app = express();
 
   app.use(express.json());
 
-  app.options('*', (req, res) => {
-    console.log('huh');
+  app.options('/api', (req, res) => {
     res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
     res.send('OK');
   });
 
   app.post('/api', (req, res) => {
-    console.log('post');
     res.header('Access-Control-Allow-Origin', '*');
     res
       .status(200)
-      .json({ message: `${req.body.value} right back from App two!` });
+      .json({ message: `${req.body.message} right back from the API!` });
   });
 
   app.listen(port, () => {
